@@ -91,7 +91,7 @@
 <script>
     function formatPassword() {
         const password = document.getElementById('passwordInput').value;
-        const formattedPassword = password.replace(/([\\!"#$%&'()*+,.:;<=>?@\[\]^`{|}~])/g, '\\$1');
+        const formattedPassword = password.replace(/([ !\"#$%&'()*+,./:;<=>?@[\\\]^_`{|}~-])/g, '\\$1');
         document.getElementById('result').innerHTML = `
             <div class="result-title">Formatted Password:</div>
             <div class="formatted-password">${formattedPassword}</div>
