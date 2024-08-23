@@ -91,7 +91,7 @@
 <script>
     function formatPassword() {
         const password = document.getElementById('passwordInput').value;
-        const formattedPassword =password.replace(/\\/g, '\\\\');
+        let formattedPassword =password.replace(/\\/g, '\\\\');
             
             // Double-escape double quotes (\\")
             formattedPassword = formattedPassword.replace(/"/g, '\\\\"');
