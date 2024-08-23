@@ -90,22 +90,23 @@
 
 <script>
     function formatPassword() {
-        const password = document.getElementById('passwordInput').value;
-        let formattedPassword =password.replace(/\\/g, '\\\\');
-            
-            // Double-escape double quotes (\\")
-            formattedPassword = formattedPassword.replace(/"/g, '\\\\"');
+    const password = document.getElementById('passwordInput').value;
 
-            // Escape remaining special characters
-            formattedPassword = formattedPassword.replace(/([@{}&`$+>])/g, '\\$1');
-		
-		//password.replace(/([ !\"#$%&'()*+,./:;<=>?@[\\\]^_`{|}~-])/g, '\\$1');
-        document.getElementById('result').innerHTML = `
-            <div class="result-title">Formatted Password:</div>
-            <div class="formatted-password">${formattedPassword}</div>
-            <button onclick="copyToClipboard()" class="copy-btn">Copy to Clipboard</button>
-        `;
-    }
+    // First escape backslashes to avoid conflicts with other escapes
+    let formattedPassword = password.replace(/\\/g, '\\\\');
+    
+    // Double-escape double quotes (\\")
+    formattedPassword = formattedPassword.replace(/"/g, '\\\\"');
+
+    // Escape remaining special characters
+    formattedPassword = formattedPassword.replace(/([@{}&`$+>])/g, '\\$1');
+
+    document.getElementById('result').innerHTML = `
+        <div class="result-title">Formatted Password:</div>
+        <div class="formatted-password">${formattedPassword}</div>
+        <button onclick="copyToClipboard()" class="copy-btn">Copy to Clipboard</button>
+    `;
+}
 
     function copyToClipboard() {
         const formattedPassword = document.querySelector('.formatted-password').textContent;
